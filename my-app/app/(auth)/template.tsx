@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import "./styles.css";
+import { useState } from "react";
 
 const navLinks = [
   { name: "Register", href: "/register" },
@@ -14,6 +15,7 @@ export default function AuthLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [input, setInput]= useState("");
   const pathname= usePathname();
   return (
     <>
@@ -22,6 +24,8 @@ export default function AuthLayout({
         <hr />
       </header> */}
 
+      <input type="text" value={input} onChange={(e)=>setInput(e.target.value)} />
+      <br/>
         {
           navLinks.map((link)=>{
             const isActive= pathname === link.href || (pathname.startsWith(link.href) && link.href !=="/");
